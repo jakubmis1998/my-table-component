@@ -51,3 +51,12 @@ formly-form {
   max-height: 550px;
   overflow: auto;
 }
+
+.dateAndTime {
+    text-align: center;
+    font-size: 20px;
+    height: 40px;
+    padding-top: 13px;
+    font-weight: bold;
+    background-color: rgb(61, 199, 204);
+}

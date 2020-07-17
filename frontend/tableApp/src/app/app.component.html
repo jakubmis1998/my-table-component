@@ -1,4 +1,6 @@
-<div>{{ time | async | date:'medium' }}</div>
+<div class="dateAndTime">
+  {{ time | async | date:'medium' }}
+</div>
 
 <!-- EXPANSION PANEL WITH FILTERS -->
 <mat-expansion-panel (opened)="filterOpenState = true" (closed)="filterOpenState = false">
