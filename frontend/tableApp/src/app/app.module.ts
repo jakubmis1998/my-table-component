@@ -10,11 +10,13 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ToastrModule } from 'ngx-toastr';
+import { SortingControlComponent } from './sorting-control/sorting-control.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SortingControlComponent
   ],
   imports: [
     BrowserModule,

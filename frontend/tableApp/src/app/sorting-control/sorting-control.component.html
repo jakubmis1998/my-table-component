@@ -1,0 +1,22 @@
+<mat-form-field appearance="fill">
+    <mat-label>Sorting Control</mat-label>
+    <mat-select [formControl]="options" multiple (selectionChange)="onSelect()">
+        <div cdkDropList (cdkDropListDropped)="drop($event)">
+            <mat-option *ngFor="let column of columnsAndOrderDirection" cdkDrag [value]="[column.key, column.value]">
+                {{column.key}}
+                <div class="descending">
+                    <mat-slide-toggle (click)="onSelect($event)" [(ngModel)]="column.value" [checked]="column.value">
+                        <span *ngIf="!column.value" class="material-icons">
+                            keyboard_arrow_down
+                        </span>
+                        <span *ngIf="column.value" class="material-icons">
+                            keyboard_arrow_up
+                        </span>
+                    </mat-slide-toggle>
+                </div>
+            </mat-option>
+        </div>
+    </mat-select>
+</mat-form-field>
+
+<button (click)="setOrderingUrl()">Console Log Url</button>

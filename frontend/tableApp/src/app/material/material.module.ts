@@ -6,6 +6,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 
 const MaterialComponents = [
@@ -16,6 +21,10 @@ const MaterialComponents = [
   MatExpansionModule,
   MatCheckboxModule,
   MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatSlideToggleModule,
+  DragDropModule
 ];
 
 @NgModule({

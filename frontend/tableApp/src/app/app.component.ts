@@ -21,6 +21,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AppComponent implements AfterViewInit {
   // Source data
   persons: any[] = [];
+  columns: any[] = [];
   // Clicked row: person
   selectedPerson: any;
   // All columns and their verbose names
@@ -178,6 +179,10 @@ export class AppComponent implements AfterViewInit {
             this.filterFields = data;
           }
         );
+        // Add only columns
+        for (let column in this.displayedColumns) {
+          this.columns.push({ key: this.displayedColumns[column].key, value: true });
+        }
       },
       error => {
         Object.keys(error.error).forEach(keyError => {
