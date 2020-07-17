@@ -38,10 +38,11 @@ export class AppComponent implements AfterViewInit {
   createPersonForm = new FormGroup({});
   model = {};
   formFields: FormlyFieldConfig[] = [];
-  // For form in expansion panel
+  // For form, filters, column visibility, table in expansion panels
   panelOpenState = false;
   filterOpenState = false;
   visibilityOpenState = false;
+  tableOpenState = false;
   // For filtering
   filterForm = new FormGroup({});
   filterFields: FormlyFieldConfig[] = [];

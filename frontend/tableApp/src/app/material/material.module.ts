@@ -8,7 +8,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
-
 const MaterialComponents = [
   MatButtonModule,
   MatTableModule,
@@ -16,7 +15,7 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatExpansionModule,
   MatCheckboxModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({

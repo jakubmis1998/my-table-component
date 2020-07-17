@@ -38,80 +38,90 @@
       </mat-checkbox>
     </ng-container>
   </div>
-
 </mat-expansion-panel>
 
-<div class="tableContainer">
 
-  <div class="example-loading-shade" *ngIf="dataFetched">
-    <mat-progress-spinner mode="indeterminate" *ngIf="dataFetched"></mat-progress-spinner>
-  </div>
+<!-- EXPANSION PANEL WITH TABLE -->
+<mat-expansion-panel (opened)="tableOpenState = true" (closed)="tableOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Table
+    </mat-panel-title>
+  </mat-expansion-panel-header>
 
   <!-- TABLE -->
-  <mat-table [dataSource]="persons" matSort cdkDropList cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="drop($event)" class="mat-elevation-z8">
+  <div class="tableContainer">
 
-    <!-- COLUMNS -->
-    <ng-container *ngFor="let column of displayedColumns; let i = index;" [matColumnDef]="column.key"
-      [ngSwitch]="column.key">
+    <div class="example-loading-shade" *ngIf="dataFetched">
+      <mat-progress-spinner mode="indeterminate" *ngIf="dataFetched"></mat-progress-spinner>
+    </div>
 
-      <!-- CHECKBOX COLUMN HEADER -->
-      <div *ngSwitchCase="'select'">
-        <mat-header-cell *matHeaderCellDef>
-          <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-            [indeterminate]="selection.hasValue() && !isAllSelected()">
-          </mat-checkbox>
-        </mat-header-cell>
-      </div>
+    <!-- TABLE -->
+    <mat-table [dataSource]="persons" matSort cdkDropList cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)" class="mat-elevation-z8">
 
-      <!-- DEFAULT COLUMNS VERBOSE NAMES -->
-      <div *ngSwitchDefault>
-        <mat-header-cell cdkDrag mat-sort-header *matHeaderCellDef>
-          {{ column.value }}
-        </mat-header-cell>
-      </div>
+      <!-- COLUMNS -->
+      <ng-container *ngFor="let column of displayedColumns; let i = index;" [matColumnDef]="column.key"
+        [ngSwitch]="column.key">
 
-      <!-- COLUMN VALUES -->
-      <mat-cell *matCellDef="let element; let i = index; let row;" [ngSwitch]="column.key">
-
-        <!-- CHECKBOX COLUMN -->
+        <!-- CHECKBOX COLUMN HEADER -->
         <div *ngSwitchCase="'select'">
-          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-            [checked]="selection.isSelected(row)">
-          </mat-checkbox>
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </mat-header-cell>
         </div>
 
-        <!-- INDEX COLUMN -->
-        <div *ngSwitchCase="'position'">
-          {{ i + 1 }}
-        </div>
-
-        <!-- ACTIONS COLUMN -->
-        <div *ngSwitchCase="'actions'">
-          <button class="mat-elevation-z0" mat-mini-fab color="primary" (click)="personClicked(element, $event);">
-            <span class="material-icons">edit</span>
-          </button>
-        </div>
-
-        <!-- DEFAULT COLUMN -->
+        <!-- DEFAULT COLUMNS VERBOSE NAMES -->
         <div *ngSwitchDefault>
-          {{ element[column.key] }}
+          <mat-header-cell cdkDrag mat-sort-header *matHeaderCellDef>
+            {{ column.value }}
+          </mat-header-cell>
         </div>
 
-      </mat-cell>
+        <!-- COLUMN VALUES -->
+        <mat-cell *matCellDef="let element; let i = index; let row;" [ngSwitch]="column.key">
 
-    </ng-container>
+          <!-- CHECKBOX COLUMN -->
+          <div *ngSwitchCase="'select'">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </div>
 
-    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="selection.toggle(row)"></mat-row>
-  </mat-table>
+          <!-- INDEX COLUMN -->
+          <div *ngSwitchCase="'position'">
+            {{ i + 1 }}
+          </div>
 
-</div>
+          <!-- ACTIONS COLUMN -->
+          <div *ngSwitchCase="'actions'">
+            <button class="mat-elevation-z0" mat-mini-fab color="primary" (click)="personClicked(element, $event);">
+              <span class="material-icons">edit</span>
+            </button>
+          </div>
 
-<!-- PAGINATOR -->
-<mat-paginator [pageSize]="5" [length]="length" [pageIndex]="pageIndex" [pageSizeOptions]="[5, 10, 25, 50, 100]"
-  showFirstLastButtons>
-</mat-paginator>
+          <!-- DEFAULT COLUMN -->
+          <div *ngSwitchDefault>
+            {{ element[column.key] }}
+          </div>
+
+        </mat-cell>
+
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="selection.toggle(row)"></mat-row>
+    </mat-table>
+
+  </div>
+
+  <!-- PAGINATOR -->
+  <mat-paginator [pageSize]="5" [length]="length" [pageIndex]="pageIndex" [pageSizeOptions]="[5, 10, 25, 50, 100]"
+    showFirstLastButtons>
+  </mat-paginator>
+</mat-expansion-panel>
 
 
 <!-- EXPANSION PANEL WITH FORM -->
@@ -119,11 +129,8 @@
   (closed)="panelOpenState = false">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      Form
+      Create / Update form
     </mat-panel-title>
-    <mat-panel-description>
-      Form {{panelOpenState ? 'open' : 'closed'}}
-    </mat-panel-description>
   </mat-expansion-panel-header>
 
   <form [formGroup]="createPersonForm" (ngSubmit)="onSubmit()">
@@ -140,3 +147,4 @@
       (click)="updatePerson()">Update</button>
   </div>
 </mat-expansion-panel>
+
