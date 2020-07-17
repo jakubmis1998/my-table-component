@@ -3,7 +3,7 @@ import { ApiService } from './api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { merge, of as observableOf } from 'rxjs';
+import { merge, of as observableOf, Observable } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSort } from '@angular/material/sort';
@@ -47,6 +47,10 @@ export class AppComponent implements AfterViewInit {
   filterFields: FormlyFieldConfig[] = [];
   // For row checkboxes
   selection = new SelectionModel<any>(true, []);
+  // For date and time
+  time = new Observable<string>(observer => {
+    setInterval(() => observer.next(new Date().toString()), 1000);
+  });
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
