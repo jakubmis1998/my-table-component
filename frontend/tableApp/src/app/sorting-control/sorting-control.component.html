@@ -17,7 +17,7 @@
             <mat-option *ngFor="let column of columnsAndOrderDirection" cdkDrag [value]="column.name">
                 {{column.verboseName}}
                 <div class="direction">
-                    <mat-slide-toggle (click)="onSelect($event)" [(ngModel)]="column.sortDirection">
+                    <mat-slide-toggle (click)="$event.stopPropagation();" (change)="onSelect();" [(ngModel)]="column.sortDirection">
                         <span *ngIf="!column.sortDirection" class="material-icons">
                             keyboard_arrow_down
                         </span>

@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { columnProperty } from '../columnProperty';
-import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -20,12 +19,9 @@ export class SortingControlComponent {
   @Output() sortObjectEmitter = new EventEmitter();
 
 
-  onSelect(event?: any) {
-    if (event) event.stopPropagation();
+  onSelect() {
     this.sortUrl = '';
     this.sortObject = [];
-    console.log(this.columnsAndOrderDirection);
-    console.log(this.columnsAndOrderDirection[3]);
     if (this.sortFormControl.value) {
       this.sortUrl = '?ordering=';
       for (let index in this.columnsAndOrderDirection) {
