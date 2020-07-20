@@ -40,6 +40,7 @@ export class SortingControlComponent {
       }
       this.sortUrl = this.sortUrl.slice(0, -1); // Removes last ","
       this.sortUrl += '&';
+      console.log(this.sortUrl);
       this.sortUrlEmitter.emit(this.sortUrl);
       this.sortObjectEmitter.emit(this.sortObject);
     }
