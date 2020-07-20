@@ -43,9 +43,13 @@
 
 <!-- EXPANSION PANEL WITH TABLE -->
 
-<app-sorting-control [columnsAndOrderDirection]="columns">
+<app-sorting-control [columnsAndOrderDirection]="columns"
+                    (sortUrlEmitter)="receiveSortUrl($event)"
+                    (sortObjectEmitter)="receiveSortObject($event)">
 </app-sorting-control>
 
+{{ sortUrl }}
+{{ sortObject }}
 
 <mat-expansion-panel (opened)="tableOpenState = true" (closed)="tableOpenState = false">
   <mat-expansion-panel-header>

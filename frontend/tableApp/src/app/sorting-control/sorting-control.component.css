@@ -1,4 +1,4 @@
-.descending {
+.direction {
     float: right;
 }
 
@@ -8,6 +8,10 @@
 }
 
 .example-additional-selection {
-  opacity: 0.75;
-  font-size: 0.75em;
+    opacity: 0.75;
+    font-size: 0.75em;
+}
+
+.columnInfoText {
+    font-size: 14px;
 }

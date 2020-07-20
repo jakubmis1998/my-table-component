@@ -9,6 +9,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ToastrService } from 'ngx-toastr';
+import { columnProperty } from './columnProperty';
 
 
 
@@ -21,7 +22,9 @@ import { ToastrService } from 'ngx-toastr';
 export class AppComponent implements AfterViewInit {
   // Source data
   persons: any[] = [];
-  columns: any[] = [];
+  columns: columnProperty[] = [];
+  sortUrl: string = '';
+  sortObject: columnProperty[] = [];
   // Clicked row: person
   selectedPerson: any;
   // All columns and their verbose names
@@ -181,7 +184,11 @@ export class AppComponent implements AfterViewInit {
         );
         // Add only columns
         for (let column in this.displayedColumns) {
-          this.columns.push({ key: this.displayedColumns[column].key, value: true });
+          this.columns.push({
+              'name': this.displayedColumns[column].key,
+              'verboseName': this.displayedColumns[column].value,
+              'sortDirection': true
+          });
         }
       },
       error => {
@@ -275,6 +282,14 @@ export class AppComponent implements AfterViewInit {
         this.columnsToDisplay.splice(index, 1);
       }
     }
+  }
+
+  receiveSortUrl(sortUrl: string) {
+    if (sortUrl) this.sortUrl = sortUrl;
+  }
+
+  receiveSortObject(sortObject: columnProperty[]) {
+    if (sortObject) this.sortObject = sortObject;
   }
 }
 
