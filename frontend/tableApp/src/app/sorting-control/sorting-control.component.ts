@@ -25,24 +25,25 @@ export class SortingControlComponent {
     this.sortObject = [];
     if (this.sortFormControl.value) {
       this.sortUrl = '?ordering=';
-      for (let column in this.columnsAndOrderDirection) {
-        if (this.sortFormControl.value.includes(this.columnsAndOrderDirection[column].name)) {
+      for (let index in this.columnsAndOrderDirection) {
+        if (this.sortFormControl.value.includes(this.columnsAndOrderDirection[index].name)) {
 
-          let columnName: string = this.columnsAndOrderDirection[column].name;
-          let sortDirection: string = this.columnsAndOrderDirection[column].sortDirection ? '' : '-';
+          let columnName: string = this.columnsAndOrderDirection[index].name;
+          let sortDirection: string = '';
+          if (event) {
+            sortDirection = this.columnsAndOrderDirection[index].sortDirection ? '-' : '';
+          }
 
           this.sortUrl += (sortDirection + columnName + ',');
           this.sortObject.push({
-            name: this.columnsAndOrderDirection[column].name,
-            verboseName: this.columnsAndOrderDirection[column].verboseName,
+            name: this.columnsAndOrderDirection[index].name,
+            verboseName: this.columnsAndOrderDirection[index].verboseName,
             sortDirection: sortDirection === '-' ? false : true
           })
         }
       }
       this.sortUrl = this.sortUrl.slice(0, -1); // Removes last ","
       this.sortUrl += '&';
-      console.log(this.sortObject);
-      console.log(this.sortUrl);
       this.sortUrlEmitter.emit(this.sortUrl);
       this.sortObjectEmitter.emit(this.sortObject);
     }
