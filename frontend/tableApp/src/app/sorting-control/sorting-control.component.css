@@ -2,11 +2,6 @@
     float: right;
 }
 
-.margin {
-    width: 50px;
-
-}
-
 .example-additional-selection {
     opacity: 0.75;
     font-size: 0.75em;
@@ -14,4 +9,6 @@
 
 .columnInfoText {
     font-size: 14px;
+    display: table-cell;
+    white-space: nowrap;
 }

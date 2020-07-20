@@ -18,15 +18,15 @@
                 {{column.verboseName}}
                 <div class="direction">
                     <mat-slide-toggle (click)="onSelect($event)" [(ngModel)]="column.sortDirection">
-                        <div class="margin">
-                            <span *ngIf="!column.sortDirection">down</span>
-                            <span *ngIf="column.sortDirection">up</span>
-                        </div>
+                        <span *ngIf="!column.sortDirection" class="material-icons">
+                            keyboard_arrow_down
+                        </span>
+                        <span *ngIf="column.sortDirection" class="material-icons">
+                            keyboard_arrow_up
+                        </span>
                     </mat-slide-toggle>
                 </div>
             </mat-option>
         </div>
     </mat-select>
 </mat-form-field>
-
-<!-- <button (click)="setOrderingUrl()">Console Log Url</button> -->

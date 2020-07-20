@@ -26,7 +26,7 @@ export class SortingControlComponent {
     this.sortObject = [];
     console.log(this.columnsAndOrderDirection);
     console.log(this.columnsAndOrderDirection[3]);
-    if (this.sortFormControl.value.length > 0) {
+    if (this.sortFormControl.value) {
       this.sortUrl = '?ordering=';
       for (let index in this.columnsAndOrderDirection) {
         if (this.sortFormControl.value.includes(this.columnsAndOrderDirection[index].name)) {
@@ -46,9 +46,6 @@ export class SortingControlComponent {
       this.sortUrl += '&';
       this.sortUrlEmitter.emit(this.sortUrl);
       this.sortObjectEmitter.emit(this.sortObject);
-    } else {
-      this.sortUrlEmitter.emit(null);
-      this.sortObjectEmitter.emit(null);
     }
   }
 
