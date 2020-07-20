@@ -14,13 +14,13 @@ export class SortingControlComponent {
   @Input() columnsAndOrderDirection: any[];
   url: string = '';
 
+
   onSelect(event?: any) {
     if (event) event.stopPropagation();
     this.url = '';
     if (this.options.value) {
       this.url = "?";
       for (let column in this.options.value) {
-        // console.log(this.options.value[column][0]);
         let currentColumn = this.columnsAndOrderDirection.filter(x => x.key === this.options.value[column][0])[0];
         let index = this.columnsAndOrderDirection.indexOf(currentColumn);
         let orderingDirection: string = this.columnsAndOrderDirection[index].value ? '' : '-'
@@ -46,7 +46,6 @@ export class SortingControlComponent {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log(this.columnsAndOrderDirection);
     moveItemInArray(this.columnsAndOrderDirection, event.previousIndex, event.currentIndex);
   }
 
