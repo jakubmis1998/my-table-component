@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { columnProperty } from '../columnProperty';
+import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -23,16 +24,15 @@ export class SortingControlComponent {
     if (event) event.stopPropagation();
     this.sortUrl = '';
     this.sortObject = [];
-    if (this.sortFormControl.value) {
+    console.log(this.columnsAndOrderDirection);
+    console.log(this.columnsAndOrderDirection[3]);
+    if (this.sortFormControl.value.length > 0) {
       this.sortUrl = '?ordering=';
       for (let index in this.columnsAndOrderDirection) {
         if (this.sortFormControl.value.includes(this.columnsAndOrderDirection[index].name)) {
 
           let columnName: string = this.columnsAndOrderDirection[index].name;
-          let sortDirection: string = '';
-          if (event) {
-            sortDirection = this.columnsAndOrderDirection[index].sortDirection ? '-' : '';
-          }
+          let sortDirection: string = this.columnsAndOrderDirection[index].sortDirection ? '' : '-';
 
           this.sortUrl += (sortDirection + columnName + ',');
           this.sortObject.push({
@@ -46,6 +46,9 @@ export class SortingControlComponent {
       this.sortUrl += '&';
       this.sortUrlEmitter.emit(this.sortUrl);
       this.sortObjectEmitter.emit(this.sortObject);
+    } else {
+      this.sortUrlEmitter.emit(null);
+      this.sortObjectEmitter.emit(null);
     }
   }
 
@@ -56,10 +59,10 @@ export class SortingControlComponent {
 
   getFirstColumnInfo() {
     let info: string = '';
-    info += this.sortFormControl.value[0][1]; // Column's verbose name
+    let firstColumn: columnProperty = this.columnsAndOrderDirection.filter(x => x.name === this.sortFormControl.value[0])[0];
+    info += firstColumn.verboseName;
     info += ": ";
-    if (!this.sortFormControl.value[0][2]) info += "UP";
-    else info += "DOWN";
+    if (firstColumn.sortDirection) info += "UP"; else info += "DOWN";
     return info;
   }
 
