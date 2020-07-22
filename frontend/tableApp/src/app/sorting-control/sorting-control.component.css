@@ -13,12 +13,12 @@
     white-space: nowrap;
 }
 
-.example-list {
+.column-list {
   overflow: auto;
   height: 256px;
 }
 
-.example-box {
+.column-box {
   padding: 20px 10px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
@@ -43,15 +43,15 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-box:last-child {
+.column-box:last-child {
   border: none;
 }
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.column-list.cdk-drop-list-dragging .column-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-custom-placeholder {
+.column-custom-placeholder {
   background: #ccc;
   border: dotted 3px #999;
   min-height: 60px;
