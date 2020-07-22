@@ -13,8 +13,9 @@
                 (+{{sortFormControl.value.length - 1}} {{sortFormControl.value?.length === 2 ? 'other' : 'others'}})
             </span>
         </mat-select-trigger>
-        <div cdkDropList (cdkDropListDropped)="drop($event)">
-            <mat-option *ngFor="let column of columnsAndOrderDirection" cdkDrag [value]="column.name">
+        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <mat-option class="example-box" *ngFor="let column of columnsAndOrderDirection" cdkDrag [value]="column.name">
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
                 {{column.verboseName}}
                 <div class="direction">
                     <mat-slide-toggle (click)="$event.stopPropagation();" (change)="onSelect();" [(ngModel)]="column.sortDirection">
