@@ -1,5 +1,5 @@
-export interface columnProperty {
-    name: string;
+export interface ColumnProperty {
+    column: string;
     verboseName: string;
-    sortDirection: boolean;
+    direction: string;
 }

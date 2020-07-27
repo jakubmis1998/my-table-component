@@ -1,16 +1,6 @@
-.direction {
-    float: right;
-}
-
-.example-additional-selection {
-    opacity: 0.75;
-    font-size: 0.75em;
-}
-
-.columnInfoText {
-    font-size: 14px;
-    display: table-cell;
-    white-space: nowrap;
+.column-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
 }
 
 .column-list {
@@ -18,17 +8,22 @@
   height: 256px;
 }
 
-.column-box {
-  padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
+.mat-option-text {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-inline-start: 10px;
+}
+
+.mat-option-text .name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.column-box {
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
   box-sizing: border-box;
-  background: white;
-  font-size: 14px;
 }
 
 .cdk-drag-preview {

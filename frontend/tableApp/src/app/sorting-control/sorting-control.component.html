@@ -1,30 +1,37 @@
 <mat-form-field appearance="fill">
-    <mat-label>Sort control</mat-label>
+    <mat-label>
+        Sort control
+    </mat-label>
     <mat-select [formControl]="sortFormControl" multiple (selectionChange)="onSelect()">
         <mat-select-trigger>
-            <div class="columnInfoText">
-                {{
-                    sortFormControl.value ?
-                    sortFormControl.value[0] ? getFirstColumnInfo() : ''
-                    : ''
-                }}
+            <div *ngIf="sortFormControl.value && sortFormControl.value[0]" class="columnInfoText">
+                <div *ngIf="getFirstColumnInfo().direction === 'asc'">
+                    {{ getFirstColumnInfo().verboseName}} UP
+                </div>
+                <div *ngIf="getFirstColumnInfo().direction === 'desc'">
+                    {{ getFirstColumnInfo().verboseName}} DOWN
+                </div>
             </div>
-            <span *ngIf="sortFormControl.value?.length > 1" class="column-additional-selection">
-                (+{{sortFormControl.value.length - 1}} {{sortFormControl.value?.length === 2 ? 'other' : 'others'}})
+            <span *ngIf="sortFormControl.value?.length> 1" class="column-additional-selection">
+                (+{{sortFormControl.value.length - 1}}
+                {{sortFormControl.value?.length === 2 ? 'other' : 'others'}})
             </span>
         </mat-select-trigger>
-        <div cdkDropList class="column-list" (cdkDropListDropped)="drop($event)">
-            <mat-option class="column-box" *ngFor="let column of columnsAndOrderDirection" cdkDrag [value]="column.name">
-                <div class="column-custom-placeholder" *cdkDragPlaceholder></div>
-                {{column.verboseName}}
-                <div class="direction">
-                    <mat-slide-toggle (click)="$event.stopPropagation();" (change)="onSelect();" [(ngModel)]="column.sortDirection">
-                        <span *ngIf="!column.sortDirection" class="material-icons">
+        <div cdkDropList (cdkDropListDropped)="drop($event)" class="column-list">
+            <mat-option *ngFor="let column of columnsAndOrderDirection" cdkDrag [value]="column.column"
+                class="column-box">
+                <div *cdkDragPlaceholder class="column-custom-placeholder"></div>
+                <div class="mat-option-text">
+                    <div class="name">
+                        {{ column.verboseName }}
+                    </div>
+                    <mat-slide-toggle (click)="$event.stopPropagation()" (change)="onSelect(column.column)" checked>
+                        <mat-icon *ngIf="column.direction === 'desc'" [matTooltip]="'Down'">
                             keyboard_arrow_down
-                        </span>
-                        <span *ngIf="column.sortDirection" class="material-icons">
+                        </mat-icon>
+                        <mat-icon *ngIf="column.direction === 'asc'" [matTooltip]="'Up'">
                             keyboard_arrow_up
-                        </span>
+                        </mat-icon>
                     </mat-slide-toggle>
                 </div>
             </mat-option>

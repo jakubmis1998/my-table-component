@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { columnProperty } from '../columnProperty';
+import { ColumnProperty } from '../columnProperty';
 
 
 @Component({
@@ -10,53 +10,56 @@ import { columnProperty } from '../columnProperty';
   styleUrls: ['./sorting-control.component.css'],
 })
 export class SortingControlComponent {
-
   sortFormControl = new FormControl();
-  sortUrl: string = '';
-  sortObject: columnProperty[] = [];
-  @Input() columnsAndOrderDirection: columnProperty[];
-  @Output() sortUrlEmitter = new EventEmitter();
+  sortObject: ColumnProperty[] = [];
+  sortUrl: string;
+
+  @Input() columnsAndOrderDirection: ColumnProperty[];
   @Output() sortObjectEmitter = new EventEmitter();
+  @Output() sortUrlEmitter = new EventEmitter();
 
-
-  onSelect() {
+  onSelect(column?: string): void {
     this.sortUrl = '';
     this.sortObject = [];
+
+    if (column) {
+      const col = this.columnsAndOrderDirection.find(x => x.column === column);
+      col.direction = col.direction === 'asc' ? 'desc' : 'asc';
+    }
+
     if (this.sortFormControl.value) {
-      this.sortUrl = '?ordering=';
-      for (let index in this.columnsAndOrderDirection) {
-        if (this.sortFormControl.value.includes(this.columnsAndOrderDirection[index].name)) {
+      this.sortUrl = 'ordering=';
+      for (const index in this.columnsAndOrderDirection) {
+        if (this.sortFormControl.value.includes(this.columnsAndOrderDirection[index].column)) {
 
-          let columnName: string = this.columnsAndOrderDirection[index].name;
-          let sortDirection: string = this.columnsAndOrderDirection[index].sortDirection ? '' : '-';
+          const nameOfColumn: string = this.columnsAndOrderDirection[index].column;
+          const sortDirection: string = this.columnsAndOrderDirection[index].direction === 'asc' ? '' : '-';
 
-          this.sortUrl += (sortDirection + columnName + ',');
+          this.sortUrl += (sortDirection + nameOfColumn + ',');
           this.sortObject.push({
-            name: this.columnsAndOrderDirection[index].name,
+            column: this.columnsAndOrderDirection[index].column,
             verboseName: this.columnsAndOrderDirection[index].verboseName,
-            sortDirection: sortDirection === '-' ? false : true
-          })
+            direction: this.columnsAndOrderDirection[index].direction
+          });
         }
       }
       this.sortUrl = this.sortUrl.slice(0, -1); // Removes last ","
-      this.sortUrl += '&';
       this.sortUrlEmitter.emit(this.sortUrl);
       this.sortObjectEmitter.emit(this.sortObject);
     }
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.columnsAndOrderDirection, event.previousIndex, event.currentIndex);
     this.onSelect();
   }
 
-  getFirstColumnInfo() {
-    let info: string = '';
-    let firstColumn: columnProperty = this.columnsAndOrderDirection.filter(x => x.name === this.sortFormControl.value[0])[0];
-    info += firstColumn.verboseName;
-    info += ": ";
-    if (firstColumn.sortDirection) info += "UP"; else info += "DOWN";
-    return info;
+  getFirstColumnInfo(): ColumnProperty {
+    for (const index in this.columnsAndOrderDirection) {
+      if (this.sortFormControl.value.includes(this.columnsAndOrderDirection[index].column)) {
+        return this.columnsAndOrderDirection[index];
+      }
+    }
   }
 
 }

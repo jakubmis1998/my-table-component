@@ -11,6 +11,7 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ToastrModule } from 'ngx-toastr';
 import { SortingControlComponent } from './sorting-control/sorting-control.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { SortingControlComponent } from './sorting-control/sorting-control.compo
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,
     }),
+    NgbModule,
 
   ],
   providers: [],

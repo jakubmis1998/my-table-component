@@ -40,16 +40,24 @@
   </div>
 </mat-expansion-panel>
 
+<!-- EXPANSION PANEL WITH SORT CONTROL -->
+
+<mat-expansion-panel (opened)="sortControlOpenState = true" (closed)="sortControlOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Sort control
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <app-sorting-control [columnsAndOrderDirection]="columns" (sortUrlEmitter)="receiveSortUrl($event)"
+    (sortObjectEmitter)="receiveSortObject($event)">
+  </app-sorting-control>
+  {{ sortUrl }}
+
+</mat-expansion-panel>
+
 
 <!-- EXPANSION PANEL WITH TABLE -->
-
-<app-sorting-control [columnsAndOrderDirection]="columns"
-                    (sortUrlEmitter)="receiveSortUrl($event)"
-                    (sortObjectEmitter)="receiveSortObject($event)">
-</app-sorting-control>
-
-{{ sortUrl }}
-{{ sortObject }}
 
 <mat-expansion-panel (opened)="tableOpenState = true" (closed)="tableOpenState = false">
   <mat-expansion-panel-header>

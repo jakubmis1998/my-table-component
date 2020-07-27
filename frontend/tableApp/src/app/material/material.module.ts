@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { MatIconModule } from '@angular/material/icon';
 
 
 const MaterialComponents = [
@@ -24,7 +24,8 @@ const MaterialComponents = [
   MatFormFieldModule,
   MatSelectModule,
   MatSlideToggleModule,
-  DragDropModule
+  DragDropModule,
+  MatIconModule
 ];
 
 @NgModule({
