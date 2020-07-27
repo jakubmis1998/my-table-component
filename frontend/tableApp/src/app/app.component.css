@@ -13,11 +13,13 @@
 }
 
 .mat-row {
-    border: 2px solid transparent;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid transparent;
 }
 
 .mat-row:hover {
-    border: 2px solid rgb(40, 148, 190);
+    background-color: rgb(228, 225, 225);
+    /* border-bottom: 1px solid rgb(40, 148, 190); */
 }
 
 formly-form {
@@ -68,7 +70,6 @@ formly-form {
 .selected {
     transition: 1s;
     background-color: rgb(180, 235, 180);
-    border-radius: 30px;
 }
 
 ::ng-deep .mat-checkbox .mat-checkbox-frame {
