@@ -20,13 +20,13 @@ describe('SortingControlComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     component.columnsAndOrderDirection = [
-      { name: 'name', verboseName: 'Imię', sortDirection: true },
-      { name: 'lastname', verboseName: 'Nazwisko', sortDirection: false },
-      { name: 'age', verboseName: 'Wiek', sortDirection: true }
+      { column: 'name', verboseName: 'Imię', direction: 'asc' },
+      { column: 'lastname', verboseName: 'Nazwisko', direction: 'desc' },
+      { column: 'age', verboseName: 'Wiek', direction: 'asc' }
     ];
     component.sortFormControl.setValue([
-      component.columnsAndOrderDirection[1].name,
-      component.columnsAndOrderDirection[0].name
+      component.columnsAndOrderDirection[1].column,
+      component.columnsAndOrderDirection[2].column
     ]);
   });
 
@@ -41,7 +41,8 @@ describe('SortingControlComponent', () => {
   });
 
   it('should return information about first column', () => {
-    expect(component.getFirstColumnInfo()).toEqual("Nazwisko: DOWN");
+    moveItemInArray(component.columnsAndOrderDirection, 1, 2);
+    expect(component.getFirstColumnInfo()).toEqual({ column: "age", verboseName: "Wiek", direction: "asc" });
   });
 
   it('should return information about selected columns', () => {
@@ -51,7 +52,7 @@ describe('SortingControlComponent', () => {
     fixture.detectChanges();
     const mainTriggerText = fixture.debugElement.query(By.css('mat-select-trigger .columnInfoText')).nativeElement;
     const optionalTriggerText = fixture.debugElement.query(By.css('mat-select-trigger .column-additional-selection')).nativeElement;
-    expect(mainTriggerText.textContent).toEqual(' Nazwisko: DOWN ');
+    expect(mainTriggerText.textContent).toEqual(' Nazwisko DOWN ');
     expect(optionalTriggerText.textContent).toEqual(' (+1 other) ');
   });
 
@@ -59,15 +60,15 @@ describe('SortingControlComponent', () => {
     spyOn(component.sortUrlEmitter, 'emit');
     spyOn(component.sortObjectEmitter, 'emit');
     //Drag and drop
-    moveItemInArray(component.columnsAndOrderDirection, 0, 1);
+    moveItemInArray(component.columnsAndOrderDirection, 1, 2);
     component.onSelect();
     expect(component.sortUrlEmitter.emit).toHaveBeenCalled();
-    expect(component.sortUrlEmitter.emit).toHaveBeenCalledWith('?ordering=-lastname,name&');
+    expect(component.sortUrlEmitter.emit).toHaveBeenCalledWith('ordering=age,-lastname');
     expect(component.sortObjectEmitter.emit).toHaveBeenCalled();
     // After drag and drop
     expect(component.sortObjectEmitter.emit).toHaveBeenCalledWith([
-      component.columnsAndOrderDirection[0],
-      component.columnsAndOrderDirection[1]
+      component.columnsAndOrderDirection[1],
+      component.columnsAndOrderDirection[2]
     ]);
   });
 });
