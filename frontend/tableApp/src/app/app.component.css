@@ -12,8 +12,12 @@
     float: left;
 }
 
+.mat-row {
+    border: 2px solid transparent;
+}
+
 .mat-row:hover {
-    background-color: #eceaea;
+    border: 2px solid rgb(40, 148, 190);
 }
 
 formly-form {
@@ -59,4 +63,20 @@ formly-form {
     padding-top: 13px;
     font-weight: bold;
     background-color: rgb(61, 199, 204);
+}
+
+.selected {
+    transition: 1s;
+    background-color: rgb(180, 235, 180);
+    border-radius: 30px;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: black;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: rgb(61, 199, 204) !important;
+    transform: rotateZ(360deg);
+    transition: 1s;
 }

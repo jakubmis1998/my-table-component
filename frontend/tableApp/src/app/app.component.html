@@ -129,7 +129,7 @@
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="selection.toggle(row)"></mat-row>
+      <mat-row *matRowDef="let row; columns: columnsToDisplay;" [ngClass]="ifSelected(row) ? 'selected' : ''" (click)="selection.toggle(row)"></mat-row>
     </mat-table>
 
   </div>

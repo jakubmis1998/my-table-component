@@ -229,6 +229,7 @@ export class AppComponent implements AfterViewInit {
     moveItemInArray(this.displayedColumns, event.previousIndex+1, event.currentIndex+1);
     // Checkboxes
     moveItemInArray(this.columnsToDisplay, event.previousIndex+1, event.currentIndex+1);
+    console.log(this.selection.selected);
   }
 
   filterData = () => {
@@ -291,6 +292,11 @@ export class AppComponent implements AfterViewInit {
 
   receiveSortObject(sortObject: ColumnProperty[]) {
     if (sortObject) this.sortObject = sortObject;
+  }
+
+  ifSelected(row) {
+    if (this.selection.selected.find(x => x === row)) return true;
+    else return false;
   }
 }
 
