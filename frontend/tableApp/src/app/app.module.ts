@@ -14,6 +14,8 @@ import { SortingControlComponent } from './sorting-control/sorting-control.compo
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { TableComponent } from './table/table.component';
+import { RegisterComponent } from './register/register.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { TableComponent } from './table/table.component';
     AppComponent,
     SortingControlComponent,
     LoginComponent,
-    TableComponent
+    TableComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { TableComponent } from './table/table.component';
       preventDuplicates: true,
     }),
     NgbModule,
+    AppRoutingModule,
 
   ],
   providers: [],

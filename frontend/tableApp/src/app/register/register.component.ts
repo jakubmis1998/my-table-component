@@ -3,22 +3,22 @@ import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css'],
   providers: [UserService]
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   userData;
+  logged: boolean = false;
 
   constructor(
     private userService: UserService,
     private toastr: ToastrService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userData = {
@@ -28,12 +28,11 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  signIn() {
-    this.userService.login(this.userData).subscribe(
+  signUp() {
+    this.userService.register(this.userData).subscribe(
       data => {
-        this.userService.storeToken(data.token);
-        this.router.navigate(['/table']);
-        this.toastr.success('Hello ' + this.userData.username + '!', 'Success');
+        this.router.navigate(['/login']);
+        this.toastr.success('User ' + data.username + ' has been created!', 'Success');
       },
       error => {
         Object.keys(error.error).forEach(keyError => {

@@ -1,6 +1,9 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import User
 from rest_framework import viewsets, filters
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 
 from .filters import PersonFilter
 from .models import Person
@@ -18,6 +21,8 @@ class PersonViewSet(viewsets.ModelViewSet):
     """
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
     filter_backends = [filters.OrderingFilter, DjangoFilterBackend]
     ordering_fields = '__all__'
     filterset_class = PersonFilter
