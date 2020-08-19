@@ -12,6 +12,7 @@ export class UserService {
   httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });
+  loggedUser: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 

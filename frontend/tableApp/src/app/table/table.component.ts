@@ -228,7 +228,6 @@ export class TableComponent implements AfterViewInit {
     moveItemInArray(this.displayedColumns, event.previousIndex + 1, event.currentIndex + 1);
     // Checkboxes
     moveItemInArray(this.columnsToDisplay, event.previousIndex + 1, event.currentIndex + 1);
-    console.log(this.selection.selected);
   }
 
   filterData = () => {

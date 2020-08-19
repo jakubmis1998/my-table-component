@@ -1,7 +1,30 @@
-<div style="text-align: center">
-    <h1>REGISTER</h1>
-    <input [(ngModel)]="userData.username">
-    <input [(ngModel)]="userData.password" type="password">
-    <input [(ngModel)]="userData.email">
-    <button (click)="signUp()">Register user</button>
-</div>
+<form [formGroup]="userData" class="login-container">
+
+    <h1 class="title">Sign up</h1>
+
+
+    <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput required formControlName="username">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput required type="password" formControlName="password">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input matInput required type="email" formControlName="email">
+    </mat-form-field>
+
+    <br>
+
+    <button class="mt-3" (click)="signUp()" mat-raised-button color="primary">Sign up</button>
+
+    <a class="nav-link" routerLink="/login">Back to login</a>
+</form>

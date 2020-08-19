@@ -1,0 +1,32 @@
+.navbar {
+    background-color: grey;
+    justify-content: flex-end;
+}
+
+.navbar a {
+    color: white;
+}
+
+.container {
+    text-align: center;
+}
+
+.nav-link-logout {
+    cursor: pointer;
+}
+
+.nav-link-logout a {
+    color: white;
+}
+
+.bg {
+    height: 100%;
+    width: 100%;
+    background: url("../assets/login-bg.png");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0.8;
+}

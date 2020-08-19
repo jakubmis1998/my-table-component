@@ -1,7 +1,13 @@
-<a *ngIf="!userService.loggedIn()" class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-<a *ngIf="!userService.loggedIn()" class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-<a *ngIf="userService.loggedIn()" class="nav-link" (click)="userService.logout()">Logout</a>
+<div class="bg">
+    <div class="navbar">
+        <div class="text-white px-4" *ngIf="userService.loggedIn()">
+            Sign as <strong>{{ userService.loggedUser }}</strong>
+        </div>
+        <a *ngIf="userService.loggedIn()" class="nav-link nav-link-logout" (click)="userService.logout()">Logout</a>
+    </div>
 
-<div class="container">
-    <router-outlet></router-outlet>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+
 </div>

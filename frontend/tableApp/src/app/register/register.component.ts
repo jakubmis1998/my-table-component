@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -9,30 +10,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
   providers: [UserService]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
-  userData;
   logged: boolean = false;
+  userData: FormGroup = this.fb.group({
+    username: [''],
+    password: [''],
+    email: ['']
+  });
 
   constructor(
     private userService: UserService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) { }
 
-  ngOnInit(): void {
-    this.userData = {
-      username: '',
-      password: '',
-      email: ''
-    };
-  }
-
   signUp() {
-    this.userService.register(this.userData).subscribe(
+    this.userService.register(this.userData.value).subscribe(
       data => {
         this.router.navigate(['/login']);
-        this.toastr.success('User ' + data.username + ' has been created!', 'Success');
+        this.toastr.success('User ' + this.userData.value['username'] + ' has been created!', 'Success');
       },
       error => {
         Object.keys(error.error).forEach(keyError => {
