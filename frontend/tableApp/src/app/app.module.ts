@@ -12,12 +12,16 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ToastrModule } from 'ngx-toastr';
 import { SortingControlComponent } from './sorting-control/sorting-control.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
+import { TableComponent } from './table/table.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SortingControlComponent
+    SortingControlComponent,
+    LoginComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

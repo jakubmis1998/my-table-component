@@ -1,0 +1,83 @@
+.mat-title {
+    width: 100%;
+    text-align: center;
+}
+
+.actions {
+    text-align: right;
+}
+
+.buttonAction {
+    margin-right: 15px;
+    float: left;
+}
+
+.mat-row {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid transparent;
+}
+
+.mat-row:hover {
+    background-color: rgb(228, 225, 225);
+    /* border-bottom: 1px solid rgb(40, 148, 190); */
+}
+
+formly-form {
+    display: flex;
+}
+
+.mat-column-select, .mat-column-position {
+  flex: 0 0 50px !important;
+}
+
+.columnCheckboxes {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.columnCheckbox {
+    padding-right: 20px;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tableContainer {
+  position: relative;
+  max-height: 550px;
+  overflow: auto;
+}
+
+.dateAndTime {
+    text-align: center;
+    font-size: 20px;
+    height: 40px;
+    padding-top: 13px;
+    font-weight: bold;
+    background-color: rgb(61, 199, 204);
+}
+
+.selected {
+    transition: 1s;
+    background-color: rgb(180, 235, 180);
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: black;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: rgb(61, 199, 204) !important;
+    transform: rotateZ(360deg);
+    transition: 1s;
+}
