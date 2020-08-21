@@ -28,8 +28,7 @@ export class LoginComponent {
   signIn() {
     this.userService.login(this.userData.value).subscribe(
       data => {
-        this.userService.storeToken(data.token);
-        this.userService.loggedUser = this.userData.value['username'];
+        this.userService.storeToken(data.token, this.userData.value['username']);
         this.router.navigate(['/table']);
         this.toastr.success('Hello ' + this.userData.value['username'] + '!', 'Success');
       },

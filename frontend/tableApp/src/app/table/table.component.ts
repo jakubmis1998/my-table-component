@@ -53,10 +53,6 @@ export class TableComponent implements AfterViewInit {
   filterFields: FormlyFieldConfig[] = [];
   // For row checkboxes
   selection = new SelectionModel<any>(true, []);
-  // For date and time
-  time = new Observable<string>(observer => {
-    setInterval(() => observer.next(new Date().toString()), 1000);
-  });
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;

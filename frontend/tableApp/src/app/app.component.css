@@ -1,14 +1,11 @@
 .navbar {
+    opacity: 0.9;
     background-color: grey;
     justify-content: flex-end;
 }
 
 .navbar a {
     color: white;
-}
-
-.container {
-    text-align: center;
 }
 
 .nav-link-logout {
@@ -20,6 +17,7 @@
 }
 
 .bg {
+    position: absolute;
     height: 100%;
     width: 100%;
     background: url("../assets/login-bg.png");
@@ -29,4 +27,11 @@
     -o-background-size: cover;
     background-size: cover;
     opacity: 0.8;
+}
+
+.dateAndTime {
+    position: absolute;
+    text-align: center;
+    left: 45%;
+    color: white;
 }

@@ -1,13 +1,16 @@
 <div class="bg">
-    <div class="navbar">
-        <div class="text-white px-4" *ngIf="userService.loggedIn()">
-            Sign as <strong>{{ userService.loggedUser }}</strong>
+
+    <div *ngIf="userService.loggedIn()" class="navbar">
+        <div class="dateAndTime">
+            {{ time | async | date:'medium' }}
         </div>
-        <a *ngIf="userService.loggedIn()" class="nav-link nav-link-logout" (click)="userService.logout()">Logout</a>
+        <div class="text-white">
+            Sign as <strong>{{ getUsername() }}</strong>
+        </div>
+        <a class="nav-link nav-link-logout ml-2" (click)="userService.logout()">Logout</a>
     </div>
 
-    <div class="container">
+    <div class="container mt-3">
         <router-outlet></router-outlet>
     </div>
-
 </div>

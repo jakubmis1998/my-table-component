@@ -12,7 +12,6 @@ export class UserService {
   httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });
-  loggedUser: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -25,6 +24,7 @@ export class UserService {
   }
 
   logout() {
+    localStorage.removeItem('NAME');
     localStorage.removeItem('TOKEN');
     this.router.navigate(['/login']);
   }
@@ -33,7 +33,8 @@ export class UserService {
     return localStorage.getItem('TOKEN') ? true : false;
   }
 
-  storeToken(token) {
+  storeToken(token, username) {
+    localStorage.setItem('NAME', username);
     localStorage.setItem('TOKEN', token);
   }
 }

@@ -1,11 +1,12 @@
 .login-container {
     position: relative;
     margin: auto;
+    margin-top: 150px;
+    text-align: center;
     width: 350px;
     height: 480px;
     border: 3px solid #e7ab2a;
     padding: 70px 0;
-    margin-top: 150px;
     border-radius: 15px;
     -webkit-box-shadow: 1px 6px 35px 5px rgba(0,0,0,0.64);
     -moz-box-shadow: 1px 6px 35px 5px rgba(0,0,0,0.64);
