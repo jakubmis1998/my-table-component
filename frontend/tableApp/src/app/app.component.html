@@ -2,7 +2,7 @@
 
     <div *ngIf="userService.loggedIn()" class="navbar p-0">
         <div class="dateAndTime">
-            {{ time | async | date:'medium' }}
+            {{ time | async | date:"dd/MM/yyyy HH:mm:ss" }}
         </div>
         <div class="text-white">
             Sign as <strong>{{ getUsername() }}</strong>
