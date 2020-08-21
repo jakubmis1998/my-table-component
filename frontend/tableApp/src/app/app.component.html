@@ -1,13 +1,16 @@
 <div class="bg">
 
-    <div *ngIf="userService.loggedIn()" class="navbar">
+    <div *ngIf="userService.loggedIn()" class="navbar p-0">
         <div class="dateAndTime">
             {{ time | async | date:'medium' }}
         </div>
         <div class="text-white">
             Sign as <strong>{{ getUsername() }}</strong>
         </div>
-        <a class="nav-link nav-link-logout ml-2" (click)="userService.logout()">Logout</a>
+        <a class="nav-link nav-link-logout text-white ml-2 pb-1 pt-2" (click)="userService.logout()">
+            <mat-icon class="p-0 m-0">exit_to_app</mat-icon>
+        </a>
+
     </div>
 
     <div class="container mt-3">

@@ -1,7 +1,9 @@
-<form [formGroup]="userData" class="login-container">
+<form [formGroup]="userData" class="login-container text-center">
 
-    <h1 class="title">Login</h1>
-
+    <div class="title text-center">
+        <mat-icon>login</mat-icon><br>
+        <label>Login</label>
+    </div>
 
     <mat-form-field>
         <mat-label>Username</mat-label>
@@ -17,7 +19,7 @@
 
     <br>
 
-    <button class="mt-3" (click)="signIn()" mat-raised-button color="primary">Login</button>
+    <button class="mt-3" (click)="signIn()" mat-raised-button color="primary">Sign in</button>
 
     <a class="nav-link" routerLink="/register">Sign up</a>
 </form>

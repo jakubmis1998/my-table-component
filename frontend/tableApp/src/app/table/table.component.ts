@@ -200,7 +200,7 @@ export class TableComponent implements AfterViewInit {
   createPerson = () => {
     this.api.createPerson(this.selectedPerson).subscribe(
       data => {
-        this.persons.push(data)
+        this.persons.unshift(data)
         this.length++;
         this.toastr.success('Successfully added', 'Success');
       },

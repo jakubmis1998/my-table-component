@@ -12,10 +12,6 @@
     cursor: pointer;
 }
 
-.nav-link-logout a {
-    color: white;
-}
-
 .bg {
     position: absolute;
     height: 100%;
