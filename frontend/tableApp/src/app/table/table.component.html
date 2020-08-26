@@ -54,8 +54,8 @@
 
 
 <!-- EXPANSION PANEL WITH FORM -->
-<mat-expansion-panel [expanded]="panelOpenState == true" (opened)="panelOpenState = true"
-  (closed)="panelOpenState = false">
+<mat-expansion-panel [expanded]="formOpenState == true" (opened)="formOpenState = true"
+  (closed)="formOpenState = false">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Create / Update form
@@ -80,7 +80,7 @@
 
 <!-- EXPANSION PANEL WITH TABLE -->
 
-<mat-expansion-panel (opened)="tableOpenState = true" (closed)="tableOpenState = false">
+<mat-expansion-panel [expanded]="tableOpenState == true" (opened)="tableOpenState = true" (closed)="tableOpenState = false">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Table

@@ -43,10 +43,10 @@ export class TableComponent implements AfterViewInit {
   model = {};
   formFields: FormlyFieldConfig[] = [];
   // For form, filters, column visibility, table in expansion panels
-  panelOpenState = false;
+  formOpenState = false;
   filterOpenState = false;
   visibilityOpenState = false;
-  tableOpenState = false;
+  tableOpenState = true;
   sortControlOpenState = false;
   // For filtering
   filterForm = new FormGroup({});
@@ -106,7 +106,7 @@ export class TableComponent implements AfterViewInit {
     this.api.getPerson(person.id).subscribe(
       data => {
         this.selectedPerson = data;
-        this.panelOpenState = true; // Automatic open form with row data
+        this.formOpenState = true; // Automatic open form with row data
       },
       error => {
         Object.keys(error.error).forEach(keyError => {
